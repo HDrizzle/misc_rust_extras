@@ -1,0 +1,15 @@
+[package]
+name = "extras"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[features]
+extras_rand = ["rand"]
+
+[dependencies]
+rand = {version = "0.8.5", optional = true}
+text_io = "0.1.12"
+mime_guess = "2.0.4"
+#serde = {version = "1.0.152", features = ["derive"]}
+#nalgebra = "0.32.2"
