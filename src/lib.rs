@@ -1,6 +1,6 @@
 // extra stuff
 
-use std::{str::FromStr, collections::HashMap, env, io, error::Error, io::Read, path, fs, f64::consts::PI, time::{Duration, SystemTime, UNIX_EPOCH}};
+use std::{str::FromStr, collections::{HashMap, hash_map::DefaultHasher}, hash::{Hash, Hasher}, env, io, error::Error, io::Read, path, fs, f64::consts::PI, time::{Duration, SystemTime, UNIX_EPOCH}};
 #[cfg(feature = "extras_rand")]
 use rand::Rng;
 use mime_guess;
@@ -157,6 +157,12 @@ pub fn option_to_result<T>(option: Option<T>, error_message: &str) -> Result<T, 
         Some(value) => Ok(value),
         None => Err(error_message.to_string()),
     }
+}
+
+pub fn calculate_hash<T: Hash>(t: &T) -> u64 {// https://doc.rust-lang.org/std/hash/index.html
+    let mut s = DefaultHasher::new();
+    t.hash(&mut s);
+    s.finish()
 }
 
 // I found out it is possible to directly serialize nalgebra structs
