@@ -59,10 +59,6 @@ pub fn rand_bool() -> bool {
 	get_secs(i.duration_since(UNIX_EPOCH))
 }*/
 
-pub fn get_secs(i: Duration) -> f64 {
-	i.as_micros() as f64 / 1_000_000.0
-}
-
 pub fn from_secs(secs: f64) -> Duration {
 	Duration::from_secs(secs.floor() as u64) + Duration::from_nanos(((secs % 1.0) * 1_000_000_000.0) as u64)
 }
